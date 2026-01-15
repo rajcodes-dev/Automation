@@ -12,11 +12,17 @@ def is_phone_number(text):
     for num in range(4,7):
         if not text[num].isdecimal():
             return False
-        
+
     if text[7] != '-':
         return False
-    
-    for num in range(8,11):
+
+    for num in range(8,12):
         if not text[num].isdecimal():
             return False
     return True
+
+
+print("Is 415-555-4242 a phone number?", is_phone_number("415-555-4242"))
+print(is_phone_number("415-555-4242"))
+print("Is Moshi moshi a phone number?", is_phone_number("Moshi moshi"))
+print(is_phone_number("Moshi moshi"))
