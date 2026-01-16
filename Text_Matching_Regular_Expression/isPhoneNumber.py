@@ -1,3 +1,5 @@
+"""Checking phone number without using regular expression."""
+"""
 def is_phone_number(text):
     if len(text) != 12:
         return False
@@ -28,3 +30,7 @@ for num in range(len(message)):
     if is_phone_number(segment):
         print("Phone Number Found: " + segment)
 print('Done')
+"""
+
+"""Checking phone number using regular expression."""
+
