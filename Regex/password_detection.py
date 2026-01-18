@@ -1,21 +1,16 @@
 """Checks the password is strong or not."""
-#  user input the password
-# then it checks and tell the password is weak or not.
-
 import re
 
-pass_re = re.compile(r"""(
-                     ([a-z])+
-                     ([A-Z])+
-                     ([0-9])+
-                     )""", re.VERBOSE)
+upper_re = re.compile(r'[A-Z]')
+lower_re = re.compile(r'[a-z]')
+digit_re = re.compile(r'\d')
 
 password = input("Enter the password: ")
-if len(password) != 8:
+
+if len(password) < 8:
     print("Password must 8 characters long.")
 else:
-    strong_pass = pass_re.findall(password)
-    if strong_pass == []:
-        print("Your password is weak.")
-    else:
+    if upper_re.search(password) and lower_re.search(password) and digit_re.search(password):
         print("Your password is strong.")
+    else:
+        print("Your password is weak.")
