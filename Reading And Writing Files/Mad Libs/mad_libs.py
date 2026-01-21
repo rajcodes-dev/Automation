@@ -16,4 +16,16 @@ noun = input("\nEnter a noun:\n")
 verb = input("\nEnter a verb:\n")
 noun2 = input("\nEnter the noun:\n")
 
+for idx, text in enumerate(mad_text):
+    if text == "ADJECTIVE":
+        mad_text[idx] = adjective
+    elif text == "NOUN":
+        mad_text[idx] = noun
+    elif text == "VERB":
+        mad_text[idx] = verb
+    elif text == "NOUN2":
+        mad_text[idx] = noun2
 
+final_file.write(mad_text)
+mad_file.close()
+final_file.close()
