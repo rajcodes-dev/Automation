@@ -1,31 +1,26 @@
 from pathlib import Path
+import re
 
-target_dir = Path("d:\PROGRAMMES\Code Arena\Automation\Reading And Writing Files\Mad Libs")
-file_path = target_dir / "final.txt"
+target_dir = Path(r"d:\PROGRAMMES\Code Arena\Automation\Reading And Writing Files\Mad Libs")
 mad_path = target_dir / "mad_lib.txt"
+file_path = target_dir / "final.txt"
 
-target_dir.mkdir(parents=True, exist_ok=True)
+if mad_path.exists():
+    content = mad_path.read_text(encoding='utf-8')
+else:
+    print("File was not found.")
+    exit()
 
-mad_file = open(mad_path, "r", encoding='utf-8')
-final_file = open(file_path, "w", encoding="utf-8")
+keywords = ['ADJECTIVE','NOUN','VERB','ADVERB']
 
-mad_text = mad_file.read()
-mad_text = mad_text.split()
-adjective = input("Enter an adjective:\n").strip().title()
-noun = input("\nEnter a noun:\n").strip().title()
-verb = input("\nEnter a verb:\n").strip().title()
-noun2 = input("\nEnter the noun:\n").strip().title()
+new_text = content
 
-for idx, text in enumerate(mad_text):
-    if text == "ADJECTIVE":
-        mad_text[idx] = adjective
-    elif text == "NOUN":
-        mad_text[idx] = noun
-    elif text == "VERB":
-        mad_text[idx] = verb
-    elif text == "NOUN2":
-        mad_text[idx] = noun2
+for word in re.findall(r'ADJECTIVE|NOUN|VERB|ADVERB', content):
+    user_text = input(f"Enter a {word.lower()}: \n")
+    new_text = new_text.replace(word, user_text, 1)
 
-final_file.write(' '.join(mad_text))
-mad_file.close()
-final_file.close()
+print("\nFinal Story:")
+print(new_text)
+
+file_path.write_text(new_text, encoding='utf-8')
+print(f"\nSaved to {file_path}")
