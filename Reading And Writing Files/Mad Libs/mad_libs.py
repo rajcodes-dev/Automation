@@ -10,11 +10,11 @@ mad_file = open(mad_path, "r", encoding='utf-8')
 final_file = open(file_path, "w", encoding="utf-8")
 
 mad_text = mad_file.read()
-mad_text = list(mad_text)
-adjective = input("Enter an adjective:\n")
-noun = input("\nEnter a noun:\n")
-verb = input("\nEnter a verb:\n")
-noun2 = input("\nEnter the noun:\n")
+mad_text = mad_text.split()
+adjective = input("Enter an adjective:\n").strip().title()
+noun = input("\nEnter a noun:\n").strip().title()
+verb = input("\nEnter a verb:\n").strip().title()
+noun2 = input("\nEnter the noun:\n").strip().title()
 
 for idx, text in enumerate(mad_text):
     if text == "ADJECTIVE":
@@ -26,6 +26,6 @@ for idx, text in enumerate(mad_text):
     elif text == "NOUN2":
         mad_text[idx] = noun2
 
-final_file.write(mad_text)
+final_file.write(' '.join(mad_text))
 mad_file.close()
 final_file.close()
