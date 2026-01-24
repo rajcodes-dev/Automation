@@ -25,3 +25,9 @@ for idx, file_path in enumerate(files):
     new_num_str = str(correct_num).zfill(len(old_num_str))
     new_name = f"{prefix}{new_num_str}.txt"
     new_path = p / new_name
+
+    if file_path.name != new_name:
+        print(f"Renameing {file_path.name} to {new_name}")
+        file_path.rename(new_path)
+
+print("Program runs successfully!")
