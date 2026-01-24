@@ -31,3 +31,18 @@ for idx, file_path in enumerate(files):
         file_path.rename(new_path)
 
 print("Program runs successfully!")
+
+def insert_gap(folder_path, prefix, start_at):
+    p = Path(folder_path)
+    pattern = re.compile(f"^{prefix}(\\d+)\\.txt$")
+
+    files = sorted(list(p.glob(f"{prefix}*.txt")),reverse = True)
+
+    for file_path in files:
+        num = int(pattern.search(file_path.name).group(1))
+
+        if num >= start_at:
+            new_num = str(num + 1).zfill(3)
+            new_name = f"{prefix}{new_num}.txt"
+            file_path.rename(p / new_name)
+            print(f"Bumped {file_path.name} to {new_name}")
