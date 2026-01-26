@@ -22,4 +22,7 @@ while True:
             else:
                 print(' ', end='')
         print()
-    
+    print(FULL * 40 + '\n' + FULL * 40)
+    print('(CTRL-C to stop.)')
+
+    time.sleep(0.2)
