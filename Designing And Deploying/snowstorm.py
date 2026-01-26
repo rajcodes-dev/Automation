@@ -13,3 +13,13 @@ def clear():
 
 while True:
     clear() # To clear the terminal window.
+
+# Main loop over each row and column.
+    for y in range(20):
+        for x in range(40):
+            if random.randint(0, 99) < DENSITY:
+                print(random.choice([TOP, BOTTOM]), end='')
+            else:
+                print(' ', end='')
+        print()
+    
