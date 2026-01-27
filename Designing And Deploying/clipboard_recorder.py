@@ -12,5 +12,6 @@ try:
             previous_content = content
 
             time.sleep(0.01)
+            
 except KeyboardInterrupt:
     pass
