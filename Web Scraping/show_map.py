@@ -5,4 +5,4 @@ if len(sys.argv) > 1:
 else:
     address = pyperclip.paste()
 
-webbrowser.open("https://www .openstreetmap .org /search ?query =" + address)
+webbrowser.open("https://www.openstreetmap.org/search?query=" + address)
