@@ -20,7 +20,7 @@ for row in range(2, sheet.max_row + 1):
     county_data[state][county]['pop'] += int(pop)
 
 print('Writing results...')
-result_file = open('census2010.py', 'w', encoding='utf-8')
+result_file = open('Excel Spreadsheets/census2010.py', 'w', encoding='utf-8')
 result_file.write('allData =' + pprint.pformat(county_data))
 result_file.close()
 print("Done.")
