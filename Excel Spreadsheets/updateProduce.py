@@ -1,6 +1,6 @@
 import openpyxl
 
-wb = openpyxl.load_workbook('produceSales3.xlsx')
+wb = openpyxl.load_workbook('Excel Spreadsheets/produceSales3.xlsx')
 sheet = wb['Sheet']
 
 PRICE_UPDATES = {'Garlic': 3.07,
@@ -11,5 +11,5 @@ for row_num in range(2, sheet.max_row + 1):
     produce_name = sheet.cell(row=row_num, column=1).value
     if produce_name in PRICE_UPDATES:
         sheet.cell(row=row_num, column=2).value = PRICE_UPDATES[produce_name]
-        
-wb.save('updatedProduceSales3.xlsx')
+
+wb.save('Excel Spreadsheets/updatedProduceSales3.xlsx')
