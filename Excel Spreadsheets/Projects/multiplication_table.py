@@ -5,25 +5,30 @@ on excel from command line arguments.
 import sys, openpyxl
 from openpyxl.styles import Font
 
-TABLE = 0
-BOLD_FONT = Font(name='Times New Roman', bold=True)
-if int(sys.argv[1]) >= 1:
+try:
+    if len(sys.argv) < 2:
+        print("Usage: py multiplication_table.py <number>")
+        sys.exit()
+
     TABLE = int(sys.argv[1])
-else:
-    print("Argument must be integer")
+    if TABLE < 1:
+        print("Please provide number greater than 0.")
+        sys.exit()
+except ValueError:
+    print("Error: Argument must be a integer")
     sys.exit()
+
+BOLD_FONT = Font(name='Times New Roman', bold=True)
 
 wb = openpyxl.Workbook()
 sheet = wb['Sheet']
 sheet.title = 'Multiplication Table'
 
-for row_num in range(2, TABLE + 2):
-    sheet.cell(row=row_num, column=1).value = row_num - 1
-    sheet.cell(row=row_num, column=1).font = BOLD_FONT
-
-for col_num in range(2, TABLE + 2):
-    sheet.cell(row=1, column=col_num).value = col_num - 1
-    sheet.cell(row=1, column=col_num).font = BOLD_FONT
+for num in range(2, TABLE + 2):
+    sheet.cell(row=num, column=1).value = num - 1
+    sheet.cell(row=num, column=1).font = BOLD_FONT
+    sheet.cell(row=1, column=num).value = num - 1
+    sheet.cell(row=1, column=num).font = BOLD_FONT
 
 for row_num in range(2, TABLE + 2):
     for col_num in range(2, TABLE + 2):
