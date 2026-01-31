@@ -180,3 +180,5 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 Google Sheets/credentials-sheets.json
+Google Sheets/token-drive.pickle
+Google Sheets/token-sheets.pickle
