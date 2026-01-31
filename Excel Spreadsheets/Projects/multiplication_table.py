@@ -20,4 +20,8 @@ for row_num in range(2, TABLE + 2):
 for col_num in range(2, TABLE + 2):
     sheet.cell(row=1, column=col_num).value = col_num - 1
 
+for row_num in range(2, TABLE + 2):
+    for col_num in range(2, TABLE + 2):
+        sheet.cell(row=row_num, column=col_num).value = (row_num - 1) * (col_num - 1)
+
 wb.save(F'Excel Spreadsheets/Projects/Table{TABLE}.xlsx')
