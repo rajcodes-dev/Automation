@@ -1,13 +1,27 @@
-import sys, openpyxl
+import openpyxl
+import os
+import sys
 
 if len(sys.argv) != 4:
-    print("enter min. 4 arguments")
+    print("Usage: python blankRowInserter.py <N> <M> <filename>")
     sys.exit()
-N = int(sys.argv[1])
-M = int(sys.argv[2])
-file_name = sys.argv[3]
-print(file_name)
-wb = openpyxl.load_workbook(file_name)
+try:
+    start_row = int(sys.argv[1])
+    num_rows = int(sys.argv[2])
+    filename = sys.argv[3]
+except ValueError:
+    print("N and M must be integers.")
+    sys.exit()
+
+if not os.path.exists(filename):
+    print(f"Error: File {filename} not found!")
+    sys.exit()
+
+print(f"Opening {filename}...")
+wb = openpyxl.load_workbook(filename)
 sheet = wb.active
-sheet.insert_rows(idx=N, amount=M)
-wb.save(f"ChangeTable.xlsx")
+
+new_wb = openpyxl.Workbook()
+new_sheet = new_wb.active
+
+print(f"Inserting {num_rows} blank row at row {start_row}...")
