@@ -25,3 +25,16 @@ new_wb = openpyxl.Workbook()
 new_sheet = new_wb.active
 
 print(f"Inserting {num_rows} blank row at row {start_row}...")
+
+for row_num in range(1, sheet.max_row + 1):
+    for col_num in range(1, sheet.max_column + 1):
+        source_cell_value = sheet.cell(row=row_num, column=col_num).value
+
+        if row_num < start_row:
+            new_sheet.cell(row=row_num, column=col_num).value = source_cell_value
+        else:
+            new_sheet.cell(row=row_num + num_rows, column=col_num).value = source_cell_value
+
+output_filename = "insert_" + filename
+new_wb.save(output_filename)
+print(f"Done! Saved to {output_filename}")
