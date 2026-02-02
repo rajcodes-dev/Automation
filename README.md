@@ -1,2 +1,2 @@
 # Automation
-A Python utility to automatically organize and manage local files.
+My learning's and all projects.
