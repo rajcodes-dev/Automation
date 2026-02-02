@@ -1,3 +1,4 @@
+"""auditBoringcoin.py - Audit the fake blockchain"""
 import ezsheets
 ss = ezsheets.Spreadsheet('https://autbor.com/boringcoin')
 accounts = {}
@@ -16,7 +17,7 @@ for row in ss.sheets[0].getRows():
 
 print(accounts)
 
-total = 0
+TOTAL = 0
 for amount in accounts.values():
-    total += amount
-print("Total Boringcoins:", total)
+    TOTAL += amount
+print("Total Boringcoins:", TOTAL)
