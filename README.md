@@ -1,2 +1,2 @@
 # Automation
-My learning of automation and web scraping.
+A Python utility to automatically organize and manage local files.
