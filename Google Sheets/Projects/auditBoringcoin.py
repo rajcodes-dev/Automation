@@ -1,6 +1,6 @@
 """auditBoringcoin.py - Audit the fake blockchain"""
 import ezsheets
-ss = ezsheets.Spreadsheet('https://autbor.com/boringcoin')
+ss = ezsheets.Spreadsheet("1-b2V7rztAhvIvH6Rzf_rX6CUaFwf3viwlf_YCrOFnOk")
 accounts = {}
 
 # Each row is a transactions, loop over each row.
