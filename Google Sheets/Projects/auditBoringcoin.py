@@ -5,10 +5,10 @@ accounts = {}
 
 # Each row is a transactions, loop over each row.
 for row in ss.sheets[0].getRows():
-    sender, recipient, amount = row[0], row[1], row[2]
+    sender, recipient, amount = row[0], row[1], int(row[2])
     if sender == 'PRE-MINE':
         accounts.setdefault(recipient, 0)
-        accounts['recipient'] += amount
+        accounts[recipient] += amount
     else:
         accounts.setdefault(sender, 0)
         accounts.setdefault(recipient, 0)
