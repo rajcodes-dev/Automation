@@ -17,6 +17,6 @@ for row in ss.sheets[0].getRows():
 print(accounts)
 
 total = 0
-for amount in account.values():
+for amount in accounts.values():
     total += amount
 print("Total Boringcoins:", total)
