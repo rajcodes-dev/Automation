@@ -1,2 +1,2 @@
 # Automation
-My learning of automation and web scraping.
+My learning's and all projects.
