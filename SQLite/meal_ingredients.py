@@ -49,4 +49,12 @@ def main():
                     i.strip() for i in ingredients_str.split(',') if i.strip()
                 ]
 
-                cursor.execute("INSERT INTO meals (name) VALUE (?)", (meal_name,))
+                cursor.execute("INSERT INTO meals (name) VALUES (?)", (meal_name,))
+                meal_id = cursor.lastrowid
+
+                for ingredient in ingredients_lst:
+                    cursor.execute(
+                    "INSERT INTO ingredients (name, meal_id) VALUES (?,?),"
+                    (ingredient, meal_id)
+                )
+                print(f"Meal added: {meal_name}")
