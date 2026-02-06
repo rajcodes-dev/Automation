@@ -8,7 +8,7 @@ def main():
     try:
         cursor.execute('CREATE TABLE IF NOT EXISTS meals (name TEXT) STRICT')
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS igredients (name TEXT,
+            CREATE TABLE IF NOT EXISTS ingredients (name TEXT,
                 meal_id INTEGER,
                 FOREIGN KEY(meal_id) REFERENCES meals
                 (rowid)
@@ -65,7 +65,7 @@ def main():
         # searching
         else:
             search_term = user_input
-            found = True
+            found = False
 
             cursor.execute("SELECT rowid FROM meals WHERE name = ?", (search_term,))
             meal_row = cursor.fetchone()
@@ -81,27 +81,27 @@ def main():
                 for row in results:
                     print(f" {row[0]}")
 
-                cursor.execute(
-                    """
-                    SELECT meals.name
-                    FROM meals
-                    JOIN ingredients ON meals.rowid = ingredients.meal_id
-                    WHERE ingredients.name = ?
-                    """,
-                    (search_term,),
-                )
+            cursor.execute(
+                """
+                SELECT meals.name
+                FROM meals
+                JOIN ingredients ON meals.rowid = ingredients.meal_id
+                WHERE ingredients.name = ?
+                """,
+                (search_term,),
+            )
 
-                ingredient_matches = cursor.fetchall()
+            ingredient_matches = cursor.fetchall()
 
-                if ingredient_matches:
-                    found = True
-                    print(f"Meals that use {search_term}:")
+            if ingredient_matches:
+                found = True
+                print(f"Meals that use {search_term}:")
 
-                    for row in ingredient_matches:
-                        print(f" {row[0]}")
+                for row in ingredient_matches:
+                    print(f" {row[0]}")
 
-                if not found:
-                    print(f"No meals or ingredients found matching '{search_term}'.")
+            if not found:
+                print(f"No meals or ingredients found matching '{search_term}'.")
 
     conn.close()
 
