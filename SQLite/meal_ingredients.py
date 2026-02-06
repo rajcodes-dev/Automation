@@ -80,4 +80,26 @@ def main():
 
                 for row in results:
                     print(f" {row[0]}")
-   
+
+                cursor.execute(
+                    """
+                    SELECT meals.name
+                    FROM meals
+                    JOIN ingredients ON meals.rowid = ingredients.meal_id
+                    WHERE ingredients.name = ?
+                    """,
+                    (search_term,),
+                )
+
+                ingredient_matches = cursor.fetchall()
+
+                if ingredient_matches:
+                    found = True
+                    print(f"Meals that use {search_term}:")
+
+                    for row in ingredient_matches:
+                        print(f" {row[0]}")
+
+                if not found:
+                    print(f"No meals or ingredients found matching '{search_term}'.")
+    conn.close()
