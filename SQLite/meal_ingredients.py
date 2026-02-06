@@ -102,4 +102,8 @@ def main():
 
                 if not found:
                     print(f"No meals or ingredients found matching '{search_term}'.")
+
     conn.close()
+
+if __name__ == '__main__':
+    main()
