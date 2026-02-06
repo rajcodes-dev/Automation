@@ -1,4 +1,5 @@
 import sqlite3
+import sys
 
 def main():
     conn = sqlite3.connect('meal_planner', isolation_level=None)
@@ -16,3 +17,22 @@ def main():
     except sqlite3.OperationalError as e:
         print(f"Database error: {e}")
         return
+
+    print("Meal Ingredients Database")
+    print("Enter 'quit' to exit.")
+    print("Add a meal: 'Meal Name:ingredient1,ingredient2")
+    print("Search: Enter a meal name or ingredient name.")
+
+    while True:
+        try:
+            user_input = input('> ').strip()
+        except (EOFError, KeyboardInterrupt):
+            break
+
+        if user_input.lower() == 'quit':
+            break
+
+        if not user_input:
+            continue
+
+        
