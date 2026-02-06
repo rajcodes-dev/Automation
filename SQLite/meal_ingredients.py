@@ -54,7 +54,30 @@ def main():
 
                 for ingredient in ingredients_lst:
                     cursor.execute(
-                    "INSERT INTO ingredients (name, meal_id) VALUES (?,?),"
+                    "INSERT INTO ingredients (name, meal_id) VALUES (?,?)",
                     (ingredient, meal_id)
                 )
                 print(f"Meal added: {meal_name}")
+
+            except ValueError:
+                print("Error: Invalid format. Use 'Meal: item1, item2'")
+
+        # searching
+        else:
+            search_term = user_input
+            found = True
+
+            cursor.execute("SELECT rowid FROM meals WHERE name = ?", (search_term,))
+            meal_row = cursor.fetchone()
+
+            if meal_row:
+                found = True
+                target_id = meal_row[0]
+                print(f"Ingredients of {search_term}:")
+
+                cursor.execute("SELECT name FROM ingredients WHERE meal_id = ?",(target_id,))
+                results = cursor.fetchall()
+
+                for row in results:
+                    print(f" {row[0]}")
+   
