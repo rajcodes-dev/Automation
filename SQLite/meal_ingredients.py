@@ -35,4 +35,18 @@ def main():
         if not user_input:
             continue
 
-        
+        # adding a meal
+        if ':' in user_input:
+            try:
+                meal_name, ingredients_str = user_input.split(':', 1)
+                meal_name = meal_name.strip()
+
+                if not meal_name:
+                    print('Error: Meal name cannot be empty.')
+                    continue
+
+                ingredients_lst = [
+                    i.strip() for i in ingredients_str.split(',') if i.strip()
+                ]
+
+                cursor.execute("INSERT INTO meals (name) VALUE (?)", (meal_name,))
