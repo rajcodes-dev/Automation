@@ -13,8 +13,11 @@ pdf_filenames.sort(key=str.lower)
 writer = pypdf.PdfWriter()
 
 for pdf_filename in pdf_filenames:
-    reader = pypdf.PdfReader(pdf_filename)
-    writer.append(pdf_filename, (1, len(reader.pages)))
+    try:
+        reader = pypdf.PdfReader(pdf_filename)
+        writer.append(pdf_filename, (1, len(reader.pages)))
+    except Exception:
+        print("error")
 
 with open('combined.pdf', 'wb') as file:
     writer.write(file)
