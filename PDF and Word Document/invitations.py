@@ -24,5 +24,8 @@ else:
         doc.add_paragraph('at 11010 Memory Lane on the Evening of', style='Normal')
         doc.add_paragraph('April 1st', style='Normal')
         doc.add_paragraph('at 7 o\'clock', style='Normal')
-        
-               
+
+        doc.add_page_break()
+
+    doc.save(output_file)
+    print(f"Success! Invitation saved to {output_file}")
