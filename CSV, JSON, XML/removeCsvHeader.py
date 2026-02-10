@@ -9,3 +9,14 @@ for csv_filename in os.listdir('.'):
         continue
     print('Removing header from ' + csv_filename + '...')
 
+    csv_rows = []
+    csv_file_obj = open(csv_filename)
+    reader_obj = csv.reader(csv_file_obj)
+
+    for row in reader_obj:
+        if reader_obj.line_num == 1:
+            continue
+        csv_rows.append(row)
+    csv_file_obj.close()
+
+    
