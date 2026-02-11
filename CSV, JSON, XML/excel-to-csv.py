@@ -21,4 +21,20 @@ for excel_file in os.listdir('.'):
         excel_title = excel_file[:-5]
         csv_filename = f"{excel_title}_{sheet_name}.csv"
 
-        
+        print(f"  Writing {csv_filename} ....")
+
+        csv_file_obj = open(csv_filename, 'w', newline='', encoding='utf-8')
+        csv_writer = csv.writer(csv_file_obj)
+
+        for row_num in range(1, sheet.max_row + 1):
+            row_data = []
+
+            for col_num in range(1, sheet.max_column + 1):
+                cell_value = sheet.cell(row=row_num, column=col_num).value
+                row_data.append(cell_value)
+
+            csv_writer.writerow(row_data)
+
+        csv_file_obj.close()
+
+print("Done.")
